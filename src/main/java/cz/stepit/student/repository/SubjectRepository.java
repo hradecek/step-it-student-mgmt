@@ -1,5 +1,7 @@
 package cz.stepit.student.repository;
 
+import org.springframework.stereotype.Component;
+
 import cz.stepit.student.entity.Subject;
 
 import java.sql.Connection;
@@ -9,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class SubjectRepository {
 
     private static final String SQL_CREATE =

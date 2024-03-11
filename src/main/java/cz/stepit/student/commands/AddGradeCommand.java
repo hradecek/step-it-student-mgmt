@@ -1,5 +1,7 @@
 package cz.stepit.student.commands;
 
+import org.springframework.stereotype.Component;
+
 import cz.stepit.student.entity.Grade;
 import cz.stepit.student.entity.Student;
 import cz.stepit.student.entity.Subject;
@@ -11,6 +13,7 @@ import java.util.Scanner;
 /**
  * Adds new grade for specific {@link Student} and {@link Subject}.
  */
+@Component
 public class AddGradeCommand implements Command {
 
     protected final StudentRepository studentRepository;

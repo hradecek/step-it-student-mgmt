@@ -1,5 +1,7 @@
 package cz.stepit.student.commands;
 
+import org.springframework.stereotype.Component;
+
 import cz.stepit.student.entity.Student;
 import cz.stepit.student.format.ModelFormatter;
 import cz.stepit.student.repository.StudentRepository;
@@ -9,6 +11,7 @@ import java.util.Scanner;
 /**
  * Query specific {@link Student}.
  */
+@Component
 public class QueryStudentCommand implements Command {
 
     protected final StudentRepository studentRepository;

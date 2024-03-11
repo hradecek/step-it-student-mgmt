@@ -1,5 +1,7 @@
 package cz.stepit.student.commands;
 
+import org.springframework.stereotype.Component;
+
 import cz.stepit.student.entity.Subject;
 import cz.stepit.student.repository.SubjectRepository;
 
@@ -8,6 +10,7 @@ import java.util.stream.Collectors;
 /**
  * List all {@link Subject}s.
  */
+@Component
 public class ListAllSubjectsCommand implements Command {
 
     protected final SubjectRepository subjectRepository;

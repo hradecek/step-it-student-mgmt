@@ -1,10 +1,13 @@
 package cz.stepit.student.format;
 
+import org.springframework.stereotype.Component;
+
 import cz.stepit.student.entity.Student;
 import cz.stepit.student.entity.Subject;
 
 import java.util.stream.Collectors;
 
+@Component
 public class StudentSimpleFormatter implements ModelFormatter<Student> {
 
     @Override

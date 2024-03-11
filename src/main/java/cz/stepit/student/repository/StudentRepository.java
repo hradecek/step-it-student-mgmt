@@ -1,5 +1,7 @@
 package cz.stepit.student.repository;
 
+import org.springframework.stereotype.Component;
+
 import cz.stepit.student.entity.Grade;
 import cz.stepit.student.entity.Student;
 import cz.stepit.student.entity.Subject;
@@ -13,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class StudentRepository {
 
     private static final String SQL_CREATE =

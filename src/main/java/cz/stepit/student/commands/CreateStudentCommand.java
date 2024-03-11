@@ -1,5 +1,7 @@
 package cz.stepit.student.commands;
 
+import org.springframework.stereotype.Component;
+
 import cz.stepit.student.entity.Student;
 import cz.stepit.student.repository.StudentRepository;
 
@@ -10,6 +12,7 @@ import java.util.Scanner;
  *
  * <p>Command prompts user for all necessary information.
  */
+@Component
 public class CreateStudentCommand implements Command {
 
     protected final StudentRepository studentRepository;

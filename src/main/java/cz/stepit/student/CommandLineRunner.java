@@ -1,5 +1,7 @@
 package cz.stepit.student;
 
+import org.springframework.stereotype.Component;
+
 import cz.stepit.student.commands.AddGradeCommand;
 import cz.stepit.student.commands.Command;
 import cz.stepit.student.commands.CreateStudentCommand;
@@ -13,7 +15,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-public class CommandLineRunner {
+@Component
+public class CommandLineRunner implements org.springframework.boot.CommandLineRunner {
 
     protected static final Map<Class<? extends Command>, String> COMMAND_TRANSLATIONS = Map.of(
             CreateSubjectCommand.class, "Create subject",
@@ -33,7 +36,8 @@ public class CommandLineRunner {
         this.commands = commands;
     }
 
-    public void run() {
+    @Override
+    public void run(String... args) throws Exception {
         printHeader();
 
         while (true) {

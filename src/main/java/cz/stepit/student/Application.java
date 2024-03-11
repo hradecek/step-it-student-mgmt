@@ -1,41 +1,31 @@
 package cz.stepit.student;
 
-import cz.stepit.student.commands.AddGradeCommand;
-import cz.stepit.student.commands.CreateStudentCommand;
-import cz.stepit.student.commands.CreateSubjectCommand;
-import cz.stepit.student.commands.ExitCommand;
-import cz.stepit.student.commands.ListAllStudentsCommand;
-import cz.stepit.student.commands.ListAllSubjectsCommand;
-import cz.stepit.student.commands.QueryStudentCommand;
-import cz.stepit.student.format.StudentSimpleFormatter;
-import cz.stepit.student.repository.DBConnectionManager;
-import cz.stepit.student.repository.StudentRepository;
-import cz.stepit.student.repository.SubjectRepository;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
-import java.util.List;
+import cz.stepit.student.repository.DBConnectionManager;
+
+import java.sql.Connection;
 import java.util.Scanner;
 
+@SpringBootApplication
 public class Application {
 
     private static final String CONNECTION_URL =
             "jdbc:sqlserver://192.168.0.113\\SQLEXPRESS:49875;databaseName=school;username=admin1;password=admin;trustServerCertificate=true;";
 
     public static void main(String[] args) {
-        final var connection = new DBConnectionManager(CONNECTION_URL).getConnection();
-        final var studentRepository = new StudentRepository(connection);
-        final var subjectRepository = new SubjectRepository(connection);
-        final var studentFormatter = new StudentSimpleFormatter();
-        final var scanner = new Scanner(System.in);
-        final var commands = List.of(
-                new CreateSubjectCommand(subjectRepository, scanner),
-                new ListAllSubjectsCommand(subjectRepository),
-                new CreateStudentCommand(studentRepository, scanner),
-                new ListAllStudentsCommand(studentRepository, studentFormatter, scanner),
-                new QueryStudentCommand(studentRepository, studentFormatter, scanner),
-                new AddGradeCommand(studentRepository, subjectRepository, scanner),
-                new ExitCommand()
-        );
+        SpringApplication.run(Application.class);
+    }
 
-        new CommandLineRunner(scanner, commands).run();
+    @Bean
+    public Scanner scanner() {
+        return new Scanner(System.in);
+    }
+
+    @Bean
+    public Connection connection() {
+        return new DBConnectionManager(CONNECTION_URL).getConnection();
     }
 }
