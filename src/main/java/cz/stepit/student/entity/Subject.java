@@ -1,12 +1,36 @@
 package cz.stepit.student.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+import static cz.stepit.student.entity.Subject.TABLE_NAME;
+
 /**
  * Represents a school subject.
  */
+@Entity
+@Table(name = TABLE_NAME)
 public class Subject {
 
-    private final long id;
-    private final String name;
+    public static final String TABLE_NAME = "subjects";
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(unique = true, nullable = false)
+    private String name;
+
+    /**
+     * Constructor.
+     */
+    protected Subject() {
+        // No-arg constructor required by JPA
+    }
 
     /**
      * Constructor.

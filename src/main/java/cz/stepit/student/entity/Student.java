@@ -18,12 +18,16 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static cz.stepit.student.entity.Student.TABLE_NAME;
+
 /**
  * Represents a student.
  */
 @Entity
-@Table(name = "students")
+@Table(name = TABLE_NAME)
 public class Student {
+
+    public static final String TABLE_NAME = "students";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,12 +40,12 @@ public class Student {
     private String lastName;
 
     @OneToMany(mappedBy = "student", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private final List<Grade> grades = new ArrayList<>();
+    private List<Grade> grades = new ArrayList<>();
 
     /**
      * Constructor.
      */
-    public Student() {
+    protected Student() {
         // No-arg constructor required by JPA
     }
 

@@ -1,21 +1,46 @@
 package cz.stepit.student.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+import static cz.stepit.student.entity.Grade.TABLE_NAME;
 
 /**
  * Represents a {@link Student}'s grade for specific {@link Subject}.
  */
+@Entity
+@Table(name = TABLE_NAME)
 public class Grade {
 
-    private final long id;
-    private final int grade;
+    public static final String TABLE_NAME = "grades";
 
-    private final Subject subject;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(nullable = false)
+    private int grade;
 
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;
+
+    @ManyToOne
+    @JoinColumn(name = "subject_id")
+    private Subject subject;
+
+    /**
+     * Constructor.
+     */
+    protected Grade() {
+        // No-arg constructor required by JPA
+    }
 
     /**
      * Constructor.
@@ -50,15 +75,6 @@ public class Grade {
     }
 
     /**
-     * Get subject.
-     *
-     * @return subject
-     */
-    public Subject getSubject() {
-        return subject;
-    }
-
-    /**
      * Get student.
      *
      * @return student
@@ -68,12 +84,21 @@ public class Grade {
     }
 
     /**
-     * Set student.
+     * Set the student.
      *
      * @param student student
      */
-    public void setStudent(Student student) {
+    protected void setStudent(Student student) {
         this.student = student;
+    }
+
+    /**
+     * Get subject.
+     *
+     * @return subject
+     */
+    public Subject getSubject() {
+        return subject;
     }
 
     /**
