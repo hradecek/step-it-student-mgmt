@@ -26,6 +26,9 @@ public class ListAllStudentsCommand implements Command {
 
     @Override
     public void run() {
-        studentRepository.findAll().stream().map(studentFormatter::format).forEach(System.out::print);
+        studentRepository
+                .findAll()
+                .stream().map(studentFormatter::format)
+                .forEach(System.out::print);
     }
 }

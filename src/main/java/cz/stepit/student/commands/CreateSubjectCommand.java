@@ -28,6 +28,6 @@ public class CreateSubjectCommand implements Command {
 
         final var subject = new Subject(subjectName);
 
-        subjectRepository.create(subject);
+        subjectRepository.save(subject);
     }
 }

@@ -32,6 +32,6 @@ public class CreateStudentCommand implements Command {
 
         final var student = new Student(firstName, lastName);
 
-        studentRepository.create(student);
+        studentRepository.save(student);
     }
 }

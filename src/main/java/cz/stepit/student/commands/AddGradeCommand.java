@@ -47,6 +47,6 @@ public class AddGradeCommand implements Command {
 
         student.addGrade(new Grade(subject, grade));
 
-        studentRepository.update(student);
+        studentRepository.save(student);
     }
 }
