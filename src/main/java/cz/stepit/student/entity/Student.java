@@ -1,5 +1,15 @@
 package cz.stepit.student.entity;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,12 +21,29 @@ import java.util.stream.Collectors;
 /**
  * Represents a student.
  */
+@Entity
+@Table(name = "students")
 public class Student {
 
-    private final long id;
-    private final String firstName;
-    private final String lastName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(name = "firstname", nullable = false)
+    private String firstName;
+
+    @Column(name = "lastname", nullable = false)
+    private String lastName;
+
+    @OneToMany(mappedBy = "student", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private final List<Grade> grades = new ArrayList<>();
+
+    /**
+     * Constructor.
+     */
+    public Student() {
+        // No-arg constructor required by JPA
+    }
 
     /**
      * Constructor.
@@ -122,6 +149,7 @@ public class Student {
      * @param grade grade
      */
     public void addGrade(Grade grade) {
+        grade.setStudent(this);
         grades.add(grade);
     }
 

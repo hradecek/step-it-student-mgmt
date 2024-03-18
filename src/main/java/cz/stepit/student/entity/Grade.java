@@ -1,13 +1,21 @@
 package cz.stepit.student.entity;
 
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 /**
  * Represents a {@link Student}'s grade for specific {@link Subject}.
  */
 public class Grade {
 
     private final long id;
-    private final Subject subject;
     private final int grade;
+
+    private final Subject subject;
+
+    @ManyToOne
+    @JoinColumn(name = "student_id")
+    private Student student;
 
     /**
      * Constructor.
@@ -48,6 +56,24 @@ public class Grade {
      */
     public Subject getSubject() {
         return subject;
+    }
+
+    /**
+     * Get student.
+     *
+     * @return student
+     */
+    public Student getStudent() {
+        return student;
+    }
+
+    /**
+     * Set student.
+     *
+     * @param student student
+     */
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     /**
