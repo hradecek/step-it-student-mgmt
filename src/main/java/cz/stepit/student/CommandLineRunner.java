@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-@Component
+//@Component
 public class CommandLineRunner implements org.springframework.boot.CommandLineRunner {
 
     protected static final Map<Class<? extends Command>, String> COMMAND_TRANSLATIONS = Map.of(
