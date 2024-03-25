@@ -15,7 +15,7 @@
   <div class="col-lg-8 mx-auto p-4 py-md-5">
     <main>
       <h1 class="text-body-emphasis">Create New Student</h1>
-      <form th:action="@{/student}" method="post">
+      <form th:action="@{/student}" method="POST">
         <div class="mb-3">
           <label class="form-label" for="firstName">First Name:</label>
           <input type="text" class="form-control" id="firstName" name="firstName" th:value="${firstName}" required><br>

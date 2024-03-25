@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/student")
@@ -15,7 +16,8 @@ public class StudentController {
     }
 
     @PostMapping
-    public String createStudent(String todo) {
-        throw new RuntimeException("TODO");
+    public String createStudent(@RequestParam String firstName, @RequestParam String lastName) {
+        // TODO: create new student
+        return "redirect:/";
     }
 }
